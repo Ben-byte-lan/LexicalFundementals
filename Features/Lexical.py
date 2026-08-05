@@ -3,6 +3,7 @@ import math
 import random
 from typing import Sequence
 from .Tools import FetchHapaxLegomma
+from ..Tokenize import FunctionWordTokenize
 
 """Contains Lexical Metrics"""
 
@@ -139,3 +140,8 @@ def HonoresH(tokens:Sequence[str])-> float:
 def SichelsS(tokens:Sequence[str]) -> float:
     """A statistical metric of hapex dilegomma"""
     return len(FetchHapaxLegomma(tokens,2))/len(set(tokens))
+
+def StopWordFreq(tokens:Sequence[str])->dict:
+    StopWords = FunctionWordTokenize(" ".join(tokens).lower())
+    n = len(tokens)
+    return  dict(map(lambda item: (item[0], item[1]/n), Counter(StopWords).items()))
