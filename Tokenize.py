@@ -7,12 +7,14 @@ punct_remover = str.maketrans("", "", string.punctuation)
 nltk.download('punkt')
 nltk.download('averaged_perceptron_tagger_eng')
 
-def WordTokenize(String:str):
-    String = String.translate(punct_remover)
+def WordTokenize(String:str, remove_punc = False):
+    if remove_punc:
+        String = String.translate(punct_remover)
     tokens = tokenize.word_tokenize(String)
     return tokens
-def CharTokenize(String:str):
-    String = String.translate(punct_remover)
+def CharTokenize(String:str,  remove_punc = False):
+    if remove_punc:
+        String = String.translate(punct_remover)
     tokens = list(String)
     return tokens
 def PuncTokenize(String:str):

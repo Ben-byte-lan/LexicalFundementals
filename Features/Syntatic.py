@@ -1,4 +1,5 @@
-from Tokenize import PosTokenize
+from ..Tokenize import PosTokenize
+
 from typing import Sequence
 from collections import Counter
 import spacy
@@ -17,38 +18,14 @@ def PosFreq(Tokens:Sequence[str])->dict:
     for k,v in freqs.items():
         freqs[k]=v/len(Postokens)
     return freqs
-
-from typing import Sequence
-
-BE_VERBS = {"be", "am", "is", "are", "was", "were", "been", "being"}
-
-def PassiveFreq(SentenceTokens: Sequence[str]) -> float:
-
-    if not SentenceTokens:
-        return 0.0
-    sublist = [PosTokenize(sentence, tag=None) for sentence in SentenceTokens]
-    passive_count = 0
-
-    for sentence in sublist:
-        is_passive = False
-        for w in range(len(sentence)):
-            if sentence[w][0].lower() in BE_VERBS:
-                if any(x[1] == "VBN" for x in sentence[w + 1:]):
-                    is_passive = True
-                    break
-        
-        if is_passive:
-            passive_count += 1
-    return passive_count / len(sublist)
-
-
+    
 class Syntactic:
     def __init__(self, sentence_tokens: Sequence[str]):
         self.sentence_tokens = sentence_tokens
         self.depths = []
         self.dependencies = Counter()
         self.dependencies_count = 0
-
+        self.passive = 0
         for doc in nlp.pipe(self.sentence_tokens):
             for sentence in doc.sents:
                 root = sentence.root
@@ -59,8 +36,13 @@ class Syntactic:
                 for token in sentence:
                     if token.dep_ == "ROOT" or not token.dep_:
                         continue
+                    if token.dep_ in {"auxpass", "nsubjpass"}:
+                        self.passive += 1
+                    
+                    
                     self.dependencies[token.dep_] += 1
                     self.dependencies_count += 1
+        self.passive = self.passive/len(sentence_tokens)
 
         if self.dependencies_count:
             self.dependencies = {
@@ -93,3 +75,5 @@ class Syntactic:
         return stdev(self.depths)
     def dependency_relations(self) -> dict:
         return self.dependencies
+    def PassiveVoiceFrequency(self)->float:
+        return self.passive

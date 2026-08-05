@@ -1,5 +1,6 @@
 from typing import Sequence
 from collections import Counter
+
 def FetchNgrams(tokens:Sequence[str],characters: bool = False, n = 3):
     """"""
     new_list = []

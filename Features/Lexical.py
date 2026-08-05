@@ -2,7 +2,8 @@ from collections import Counter
 import math
 import random
 from typing import Sequence
-from Features.Tools import FetchHapaxLegomma
+from .Tools import FetchHapaxLegomma
+
 """Contains Lexical Metrics"""
 
 def TTR(tokens: Sequence[str]) -> float:
@@ -128,7 +129,12 @@ def Hapax(tokens:Sequence[str]) -> float:
 
 def HonoresH(tokens:Sequence[str])-> float:
     """A statistical metric of hapax legomma"""
-    return 100*math.log10(len(tokens))/(1-(len(FetchHapaxLegomma(tokens))/(len(set(tokens)))))
+    v = set(tokens)
+    v1 = len(FetchHapaxLegomma(tokens))
+    if v1==v:
+        return 0.0
+    else:
+        return 100*math.log10(len(tokens))/(1-(len(v1)/(len(v))))
 
 def SichelsS(tokens:Sequence[str]) -> float:
     """A statistical metric of hapex dilegomma"""
