@@ -1,0 +1,27 @@
+from nltk import tokenize
+import nltk
+import re
+import string
+pattern = re.compile(f"[{re.escape(string.punctuation)}]")
+punct_remover = str.maketrans("", "", string.punctuation)
+nltk.download('punkt')
+nltk.download('averaged_perceptron_tagger_eng')
+
+def WordTokenize(String:str):
+    String = String.translate(punct_remover)
+    tokens = tokenize.word_tokenize(String)
+    return tokens
+def CharTokenize(String:str):
+    String = String.translate(punct_remover)
+    tokens = list(String)
+    return tokens
+def PuncTokenize(String:str):
+    return pattern.findall(String)
+def SentenceTokenize(String:str):
+    return tokenize.sent_tokenize(String)
+def TotalTokenize(String: str):
+    return list(String)
+
+def PosTokenize(String: str, tag='universal'):
+    return nltk.pos_tag(WordTokenize(String), tagset=tag)
+
