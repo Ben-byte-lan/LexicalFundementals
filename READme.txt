@@ -1,2 +1,2 @@
-Stylometric Analysis Program that intends to provide an array of tools for authorship attribution. 
+Stylometric Analysis Program that intends to provide an array of tools for authorship attribution and AI detection...
 
