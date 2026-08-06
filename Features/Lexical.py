@@ -146,3 +146,4 @@ def StopWordFreq(tokens:Sequence[str])->dict:
     StopWords = FunctionWordTokenize(" ".join(tokens).lower())
     n = len(tokens)
     return  dict(map(lambda item: (item[0], item[1]/n), Counter(StopWords).items()))
+

@@ -59,6 +59,7 @@ class Syntactic:
         else:
             self.dependencies = {}
 
+
     def get_tree_depth(self, token) -> int:
         children = list(token.children)
         if not children:
@@ -84,3 +85,4 @@ class Syntactic:
         return self.dependencies
     def PassiveVoiceFrequency(self)->float:
         return self.passive
+    

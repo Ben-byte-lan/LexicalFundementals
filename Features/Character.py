@@ -1,7 +1,8 @@
 from collections import Counter
 import math
 from typing import Sequence
-from ..Tokenize import PuncTokenize, WordTokenize
+from ..Tokenize import PuncTokenize, WordTokenize, SentenceTokenize
+import syllables
 
 
 def AvgWordLength(tokens: Sequence[str]) -> float:
@@ -12,9 +13,10 @@ def AvgWordLength(tokens: Sequence[str]) -> float:
 
 
 def AvgSentenceLength(tokens: Sequence[str]) -> float:
-    """Returns the average sentence length in words; requires sentence tokens."""
+    """Returns the average sentence length in words"""
     if not tokens:
         return 0.0
+    tokens = SentenceTokenize(" ".join(tokens))
     return sum(len(WordTokenize(sentence)) for sentence in tokens) / len(tokens)
 
 
@@ -50,3 +52,16 @@ def UpperCaseFreq(tokens: Sequence[str]) -> float:
 
     uppercase_total = sum(1 for token in tokens if token and token[0].isupper())
     return uppercase_total / len(tokens)
+
+def SyllableFreq(tokens:Sequence[str], t=False)->float:
+    """syllable frequencies"""
+    if not t:
+        return sum([syllables.estimate(x) for x in tokens])/len(tokens)
+    else:
+       cnt=0
+       for x in tokens:
+           l = syllables.estimate(x)
+           if l>=3:
+               cnt += 1
+
+    return cnt/len(tokens)
