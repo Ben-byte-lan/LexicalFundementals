@@ -25,7 +25,7 @@ def FetchHapaxLegomma(tokens:Sequence[str], n=1):
     return new_list
 
     
-def BurrowsDelta(text1:Sequence[str], Corpus2:List[Sequence[str]],k)->float:
+def BurrowsDelta(text1:Sequence[str], Corpus2:List[Sequence[str]],k=100)->float:
     """1 is test, 2 is main"""
     n_test = len(text1)
     n_docs = len(Corpus2)

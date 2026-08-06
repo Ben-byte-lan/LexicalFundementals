@@ -1,6 +1,6 @@
 from .Features import Character, Lexical, Ngram, Readability, Syntatic, Tools
 import Tokenize 
-from typing import Sequence
+from typing import Sequence,List
 class Features:
     def __init__(self,text:str, n=3,k=15,segment=100, alpha=.5):
         self.words = Tokenize.WordTokenize(text)
@@ -72,6 +72,8 @@ class Features:
                     vector.append((k,v))
             return vector
 
+        def GetBurrows(self,corpus:List[Sequence[str]],k=100):
+            return Tools.BurrowsDelta(self.words,corpus,k)
 
 
 
