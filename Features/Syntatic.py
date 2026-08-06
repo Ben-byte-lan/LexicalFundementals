@@ -23,7 +23,7 @@ def PosEntropy(Tokens:Sequence[str])->float:
     return Shannon_Entropy(pos[1] for pos in Postokens)
 
 class Syntactic:
-    def __init__(self, sentence_tokens: Sequence[str]):
+    def __init__(self, sentence_tokens):
         self.sentence_tokens = sentence_tokens
         self.depths = []
         self.passivity= True
