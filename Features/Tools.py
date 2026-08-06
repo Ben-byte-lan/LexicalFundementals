@@ -44,6 +44,9 @@ def BurrowsDelta(text1:Sequence[str], Corpus2:List[Sequence[str]],k)->float:
         mu = sum(doc_freqs) / n_docs if n_docs > 0 else 0
         variance = sum((f - mu) ** 2 for f in doc_freqs) / n_docs
         sigma = math.sqrt(variance)
+        if sigma == 0:
+            sigma = 1e-10
+        
         f_ref_total = all_corpus_words[word] / sum(len(doc) for doc in Corpus2)
 
         z_test = (f_test - mu) / sigma

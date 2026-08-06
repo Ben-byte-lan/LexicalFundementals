@@ -30,7 +30,7 @@ def TotalTokenize(String: str):
 def PosTokenize(String: str, tag='universal'):
     return nltk.pos_tag(WordTokenize(String), tagset=tag)
 def FunctionWordTokenize(String:str):
-    """lower case pls"""
     words = WordTokenize(String)
-    return [f for f in words if f in function_words]
+    return [f for f in words if f.lower() in function_words]
+
 

@@ -1,5 +1,5 @@
 from ..Tokenize import PosTokenize
-
+from .Lexical import Shannon_Entropy
 from typing import Sequence
 from collections import Counter
 import spacy
@@ -18,11 +18,15 @@ def PosFreq(Tokens:Sequence[str])->dict:
     for k,v in freqs.items():
         freqs[k]=v/len(Postokens)
     return freqs
-    
+def PosEntropy(Tokens:Sequence[str])->float:
+    Postokens=PosTokenize(" ".join(Tokens))
+    return Shannon_Entropy(pos[1] for pos in Postokens)
+
 class Syntactic:
     def __init__(self, sentence_tokens: Sequence[str]):
         self.sentence_tokens = sentence_tokens
         self.depths = []
+        self.passivity= True
         self.dependencies = Counter()
         self.dependencies_count = 0
         self.passive = 0
@@ -36,12 +40,15 @@ class Syntactic:
                 for token in sentence:
                     if token.dep_ == "ROOT" or not token.dep_:
                         continue
-                    if token.dep_ in {"auxpass", "nsubjpass"}:
+                    if token.dep_ in {"auxpass", "nsubjpass"} and not self.passivity:
                         self.passive += 1
-                    
+                        self.passivity = True
                     
                     self.dependencies[token.dep_] += 1
                     self.dependencies_count += 1
+
+                self.passivity= False
+
         self.passive = self.passive/len(sentence_tokens)
 
         if self.dependencies_count:

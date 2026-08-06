@@ -121,7 +121,8 @@ def Yules_I(tokens: Sequence[str]) -> float:
     if not tokens:
         return 0.0
     else:
-        return 1 / Yules_K(tokens)
+        k = Yules_K(tokens)
+        return 0 if k == 0 else 1/k
 
 
 def Hapax(tokens:Sequence[str]) -> float:
@@ -130,7 +131,7 @@ def Hapax(tokens:Sequence[str]) -> float:
 
 def HonoresH(tokens:Sequence[str])-> float:
     """A statistical metric of hapax legomma"""
-    v = set(tokens)
+    v = len(set(tokens))
     v1 = len(FetchHapaxLegomma(tokens))
     if v1==v:
         return 0.0
