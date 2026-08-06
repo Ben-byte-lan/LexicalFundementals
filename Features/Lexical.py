@@ -127,7 +127,10 @@ def Yules_I(tokens: Sequence[str]) -> float:
 
 def Hapax(tokens:Sequence[str]) -> float:
     """Compute the frequency of Hapax Legomma."""
-    return len(FetchHapaxLegomma(tokens))/len(tokens)
+    if not tokens:
+        return 0.0
+    else:
+        return len(FetchHapaxLegomma(tokens))/len(tokens)
 
 def HonoresH(tokens:Sequence[str])-> float:
     """A statistical metric of hapax legomma"""
@@ -140,10 +143,16 @@ def HonoresH(tokens:Sequence[str])-> float:
 
 def SichelsS(tokens:Sequence[str]) -> float:
     """A statistical metric of hapex dilegomma"""
-    return len(FetchHapaxLegomma(tokens,2))/len(set(tokens))
+    if not tokens:
+        return 0.0
+    else:
+        return len(FetchHapaxLegomma(tokens,2))/len(set(tokens))
 
 def StopWordFreq(tokens:Sequence[str])->dict:
-    StopWords = FunctionWordTokenize(" ".join(tokens).lower())
-    n = len(tokens)
-    return  dict(map(lambda item: (item[0], item[1]/n), Counter(StopWords).items()))
+    if not tokens:
+        return {}
+    else:
+        StopWords = FunctionWordTokenize(" ".join(tokens).lower())
+        n = len(tokens)
+        return  dict(map(lambda item: (item[0], item[1]/n), Counter(StopWords).items()))
 

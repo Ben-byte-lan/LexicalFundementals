@@ -55,6 +55,8 @@ def UpperCaseFreq(tokens: Sequence[str]) -> float:
 
 def SyllableFreq(tokens:Sequence[str], t=False)->float:
     """syllable frequencies"""
+    if not tokens:
+        return 0.0
     if not t:
         return sum([syllables.estimate(x) for x in tokens])/len(tokens)
     else:

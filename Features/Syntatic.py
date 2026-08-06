@@ -26,7 +26,7 @@ class Syntactic:
     def __init__(self, sentence_tokens):
         self.sentence_tokens = sentence_tokens
         self.depths = []
-        self.passivity= True
+        self.passivity= False
         self.dependencies = Counter()
         self.dependencies_count = 0
         self.passive = 0
