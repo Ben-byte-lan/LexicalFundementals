@@ -1,3 +1,8 @@
+"""Not a perfect solution as I had to back in a delete some prefaces, but accomplished alot of the other issues 
+that truly would have beyond tiresome.
+"""
+
+
 from DataClean import clean_gutenberg_file
 import os
 print("Started")

@@ -139,7 +139,7 @@ def HonoresH(tokens:Sequence[str])-> float:
     if v1==v:
         return 0.0
     else:
-        return 100*math.log10(len(tokens))/(1-(len(v1)/(len(v))))
+        return 100*math.log10(len(tokens))/(1-(v1/v))
 
 def SichelsS(tokens:Sequence[str]) -> float:
     """A statistical metric of hapex dilegomma"""
