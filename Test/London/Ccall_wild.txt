@@ -1,14 +1,4 @@
-cover 
-The Call of the Wild
-by Jack London
-Contents
- Chapter I. Into the Primitive
- Chapter II. The Law of Club and Fang
- Chapter III. The Dominant Primordial Beast
- Chapter IV. Who Has Won to Mastership
- Chapter V. The Toil of Trace and Trail
- Chapter VI. For the Love of a Man
- Chapter VII. The Sounding of the Call
+
 Chapter I. Into the Primitive
 “Old longings nomadic leap,
 Chafing at custom’s chain;
