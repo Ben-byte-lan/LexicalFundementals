@@ -8,9 +8,11 @@ from statistics import median, mean, stdev
 try:
     nlp = spacy.load("en_core_web_sm", disable=["ner"])
 except OSError:
-    nlp = spacy.blank("en")
-    if "sentencizer" not in nlp.pipe_names:
-        nlp.add_pipe("sentencizer")
+    raise RuntimeError(
+        "en_core_web_sm is required for syntactic features."
+    )
+if "sentencizer" not in nlp.pipe_names:
+    nlp.add_pipe("sentencizer")
 
 def PosFreq(Tokens:Sequence[str])->dict:
     Postokens=PosTokenize(" ".join(Tokens))

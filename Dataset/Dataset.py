@@ -27,6 +27,11 @@ class Dataset:
                 file,
                 indent=4
             )
-    def load(self,file):
-        with open(file, "r", encoding="utf-8") as file:
-            self.samples=json.load(file,)
+    def load(self, path):
+        with open(path, "r", encoding="utf-8") as file:
+            data = json.load(file)
+
+            self.samples = [
+                Sample(**sample)
+                for sample in data
+            ]

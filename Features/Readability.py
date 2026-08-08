@@ -12,6 +12,8 @@ def GonningHog(tokens:Sequence[str])->float:
     return  0.4 * (AvgSentenceLength(tokens) + SyllableFreq(tokens, t=True))
 
 def ARI(tokens:Sequence[str])->float:
+    if not tokens:
+        return 0.0
     chars = len("".join(tokens))
     words = len(tokens)
     sentences = len(SentenceTokenize(" ".join(tokens)))

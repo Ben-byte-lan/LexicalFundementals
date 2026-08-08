@@ -44,7 +44,7 @@ def push(filepath, dataset:Dataset):
     segments = chunk(filepath)
     for id in range(len(segments)):
         features = Features(text=" ".join(segments[id]))
-        dataset.add_samples(features.GetVector,author,book,id)
+        dataset.add_sample(features.GetVector(),author,book,id)
         """create a feature selection function"""
 
         

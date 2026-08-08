@@ -8,7 +8,7 @@ class Features:
         
         self.SyntaticClass = Syntatic.Syntactic(self.sentences)
         self.dataextract={
-            "AvgWordLength": Character.AvgWordLength(self.self.words),
+            "AvgWordLength": Character.AvgWordLength(self.words),
             "AvgSentenceLength": Character.AvgSentenceLength(self.words),
             "CharEntropy": Character.CharEntropy(self.words),
             "PuncEntropy":Character.PuncEntropy(self.words),
@@ -17,13 +17,13 @@ class Features:
 
             "TTR":Lexical.TTR(self.words),
             "MSTTR":Lexical.MSTTR(self.words,segment),
-            "MATTR":Lexical.MATTR(self.words,segment),
+            "MATTR":Lexical.MATTR(self.words,words),
             "HonoresH":Lexical.HonoresH(self.words),
             "RenyiEntropy":Lexical.Renyi_Entropy(self.words,alpha),
             "ShannonsEntropy":Lexical.Shannon_Entropy(self.words),
             "SichelsS":Lexical.SichelsS(self.words),
             "StopWordFreq":Lexical.StopWordFreq(self.words),
-            "SubSampleEntropy":Lexical.Subsample_Entropy(self.words),
+            "SubSampleEntropy":Lexical.Subsample_Entropy(self.words,words,alpha=1),
             "WMSTTR":Lexical.WMSTTR(self.words,words),
             "YulesK":Lexical.Yules_K(self.words),
             "YulesI":Lexical.Yules_I(self.words),
