@@ -27,6 +27,6 @@ class Dataset:
                 file,
                 indent=4
             )
-    def load(self):
-        with open(f".Test\dataset.json", "r", encoding="utf-8") as file:
-            self.samples=json.load(f".Test\dataset.json",)
+    def load(self,file):
+        with open(file, "r", encoding="utf-8") as file:
+            self.samples=json.load(file,)
