@@ -19,7 +19,7 @@ class Dataset:
         self.samples.append(sample)
 
     def save(self):
-
+    
 
         with open(f".Test\dataset.json", "w", encoding="utf-8") as file:
             json.dump(
@@ -27,3 +27,6 @@ class Dataset:
                 file,
                 indent=4
             )
+    def load(self):
+        with open(f".Test\dataset.json", "r", encoding="utf-8") as file:
+            self.samples=json.load(f".Test\dataset.json",)

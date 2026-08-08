@@ -48,7 +48,6 @@ def push(filepath, dataset:Dataset):
         """create a feature selection function"""
 
         
-def load():
 
 
     
